@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css"  href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" type="text/css"  href="../css/style.css">
+</head>
+<body>
+<!-- Navigation
+    ==========================================-->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand" href="index.html">
+                <img src="../images/logo.png" width="75">
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#about-section" class="page-scroll">Explore</a></li>
+                <li>
+                    <button type="button" style="margin-top: 10px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-event-modal">
+                        Organize event
+                    </button>
+                </li>
+                <li><a id="logout" href="" class="page-scroll">Logout</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div id="eventlist" >
+    <div class="container event-container">
+        <!--<div class="row event">-->
+            <!--<div class="col-md-4">-->
+                <!--<img src="../images/sushi.jpg" class="img-responsive">-->
+            <!--</div>-->
+            <!--<div class="col-md-6">-->
+                <!--<div>-->
+                    <!--<h2>How to make Japnese Sushi</h2>-->
+                <!--</div>-->
+                <!--<div class="eventlist-detail-row">-->
+                    <!--<h4 style="word-wrap: break-word;">Description:askdfhaklsdhflkjashdflkjahsdlkfhaslkdfhalksjdhflakjshdflkajshdflkajhsdfalkjh</h4>-->
+                <!--</div>-->
+                <!--<div class="eventlist-detail-row">-->
+                    <!--<span class="eventlist-icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>-->
+                    <!--<span>16 April 2016, 19:00</span>-->
+                <!--</div>-->
+                <!--<div class="eventlist-detail-row">-->
+                    <!--<span class="eventlist-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>-->
+                    <!--<span>Beeri Str. 47, Tel aviv</span>-->
+                <!--</div>-->
+                <!--<div class="eventlist-detail-row">-->
+                    <!--<span class="eventlist-icon"><i class="fa fa-user" aria-hidden="true"></i></span>-->
+                    <!--<span>50/100 going</span>-->
+                <!--</div>-->
+                <!--<div class="eventlist-detail-row">-->
+                    <!--<button type="button" class="btn btn-sm btn-primary pull-right" style="alignment: right;">-->
+                        <!--More information <i class="fa fa-arrow-right" aria-hidden="true"></i>-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!-- Modal -->
+        <div class="modal" id="create-event-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="title">Organize event</h4>
+                    </div>
+                    <form method="post" class="form-horizontal" id="create-event">
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2">Name</label>
+                                    <div class="col-md-8">
+                                    <input name="name" class="form-control" id="name" placeholder="Event name" required></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date" class="col-sm-2">Date</label>
+                                    <div class="col-md-8">
+                                    <input name="date" placeholder="Date" class="form-control required" data-date-format="DD MMM YYYY, HH:MM" id='date' required>
+                                        <!--<span class="input-group-addon">-->
+                                            <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                                        <!--</span>-->
+                                    </input>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="location" class="col-sm-2">Location</label>
+                                    <div class="col-md-8">
+                                    <input name="location" placeholder="Location" class="form-control" id='location'></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quota" class="col-sm-2">Quotar</label>
+                                    <div class="col-md-8">
+                                    <input name="quota" type="number" class="form-control" id="quota" min="1"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category" class="col-sm-2">Category</label>
+                                    <div class="col-md-8">
+                                    <input name="category" class="form-control" id="category"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-2">Description</label>
+                                    <div class="col-md-8">
+                                        <textarea name="description" type="text" class="form-control" id="description" placeholder="Description"></textarea></div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script src="../bower_components/moment/min/moment.min.js"></script>
+<script src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+    var events;
+    $( document ).ready(function() {
+        var user;
+        jQuery.ajax({
+                    url: "http://test_backend.rapidapi.io/get_logged_in_user",
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: {
+                    }
+                })
+                .done(function(data, textStatus, jqXHR) {
+                    user = jQuery.parseJSON(data);
+                    console.log("HTTP Request Succeeded: " + jqXHR.status);
+                    console.log(data);
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("HTTP Request Failed");
+                });
+
+        jQuery.ajax({
+                    url: "http://test_backend.rapidapi.io/get_events",
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: {
+                    }
+                })
+                .done(function(data, textStatus, jqXHR) {
+                    console.log("HTTP Request Succeeded: " + jqXHR.status);
+                    events = jQuery.parseJSON(data);
+                    console.log(events);
+                    for (var i in events) {
+                        event = events[i];
+                        var image_url = "../images/band.jpg";
+                        if (event.picture_url != "null" && event.picture_url != "undefined_url") {
+                            image_url = event.picture_url;
+                        }
+                        $( "div.event-container" ).append(function() {
+                            return '<div class="row event">' +
+                            '<div class="col-md-4">' +
+                                    '<img src=' + image_url + ' class="img-responsive">' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                    '<div>' +
+                                    '<h2>' + event.name + '</h2>' +
+                            '</div>' +
+                            '<div class="eventlist-detail-row">' +
+                                    '<h4 style="word-wrap: break-word;">' + event.description + '</h4>' +
+                            '</div>' +
+                            '<div class="eventlist-detail-row">' +
+                                    '<span class="eventlist-icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>' +
+                                    '<span>' + event.   date + '</span>' +
+                            '</div>' +
+                            '<div class="eventlist-detail-row">' +
+                                    '<span class="eventlist-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>' +
+                                    '<span>' + event.location + '</span>' +
+                            '</div>' +
+                            '<div class="eventlist-detail-row">' +
+                                    '<span class="eventlist-icon"><i class="fa fa-user" aria-hidden="true"></i></span>' +
+                                    '<span>' + event.quota + ' Going</span>' +
+                            '</div>' +
+                            '<div class="eventlist-detail-row">' +
+                                    '<form action="event.html" method="get">' +
+                                    '<input type="hidden" name="id" value="' + event._id + '">' +
+                                    '<input type="hidden" name="name" value="' + event.name + '">' +
+                                    '<input type="hidden" name="location" value="' + event.location + '">' +
+                                    '<input type="hidden" name="date" value="' + event.date + '">' +
+                                    '<input type="hidden" name="quota" value="' + event.quota + '">' +
+                                    '<input type="hidden" name="description" value="' + event.description + '">' +
+                                    '<input type="hidden" name="picture-url" value="' + event.picture_url + '">' +
+                                    '<input type="hidden" name="category" value="' + event.category + '">' +
+                                    '<button type="submit" class="btn btn-sm btn-primary pull-right"">' +
+                                    'More information <i class="fa fa-arrow-right" aria-hidden="true"></i>' +
+                                    '</button></form>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>';
+                        });
+
+                    }
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("HTTP Request Failed");
+                })
+                .always(function() {
+                    /* ... */
+                });
+
+        $("#more-info-btn-0").click(function(event){
+            $("form#more-info-form-0").submit();
+            event.preventDefault();
+            return false;
+        });
+
+        $( "#logout").click(function(event) {
+            jQuery.ajax({
+                        url: "http://test_backend.rapidapi.io/del_logged_in_user",
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        data: {
+                        }
+                    })
+                    .done(function(data, textStatus, jqXHR) {
+                        console.log("HTTP Request Succeeded: " + jqXHR.status);
+                        console.log(data);
+                        $(document).ready( function() {
+                            $( location ).attr("href", "index.html");
+                        });
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log("HTTP Request Failed");
+                    })
+                    .always(function() {
+                        /* ... */
+                    });
+            event.preventDefault();
+            return false;
+        });
+
+        $( "#create-event" ).submit(function(event) {
+            jQuery.ajax({
+                        url: "http://test_backend.rapidapi.io/set_event",
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        data: {
+                            "name": $("#name").val(),
+                            "category": $("#category").val(),
+                            "picture_url": $("#picture_url").val(),
+                            "date": $("#date").val(),
+                            "quota": $("#quota").val(),
+                            "created_by": user.name,
+                            "comments": $("#comments").val(),
+                            "description": $("#description").val(),
+                        }
+                    })
+                    .done(function(data, textStatus, jqXHR) {
+                        console.log("HTTP Request Succeeded: " + jqXHR.status);
+                        //JQuery code to redirect a page or URL
+                        $(document).ready( function() {
+                            $( location ).attr("href", "../pages/eventlist.html");
+                        });
+                        console.log(data);
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log("HTTP Request Failed");
+                    })
+                    .always(function() {
+                        /* ... */
+                    });
+            event.preventDefault();
+            return false;
+        });
+        console.log( "ready!" );
+    });
+
+    $(function () {
+        $('#date').datetimepicker({
+            pickTime: true
+        });
+    });
+
+
+
+</script>
+
+</body>
+</html>

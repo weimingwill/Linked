@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css"  href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" type="text/css"  href="../css/style.css">
+</head>
+<body>
+<!-- Navigation
+    ==========================================-->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand" href="index.html">
+                <img src="../images/logo.png" width="75">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="eventlist.html" class="page-scroll">Explore</a></li>
+                <li>
+                    <button type="button" style="margin-top: 10px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-event-modal">
+                        Organize event
+                    </button>
+                </li>
+                <li><a id="logout" href="" class="page-scroll">Logout</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div id="event" >
+    <div class="container event-container">
+        <div class="event">
+            <div id="event-picture">
+                <img class="img-responsive" id="picture-url" src="../images/band.jpg">
+            </div>
+            <div id="event-details">
+                <div class="event-row row">
+                    <div class="col-md-8">
+                        <h1 id="event-name"></h1>
+                    </div>
+                    <div class="col-md-4" style="margin-top: 20px;">
+                        <form id="join-form">
+                            <input name="event_id" id="event-id" type="hidden">
+                            <input name="user_id" id="user-id" type="hidden">
+
+                        </form>
+                    </div>
+                </div>
+                <div class="event-row">
+                    <span class="event-icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    <span style="margin-right: 10px;" id="event-date"></span>
+                    <span class="event-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <span style="margin-right: 10px;" id="event-quota">50/100 Going</span>
+                    <span class="event-icon"><i class="fa fa-tags" aria-hidden="true"></i></span>
+                    <span id="event-category"></span>
+                </div>
+
+                <div class="event-row">
+                    <h3 id="event-description"></h3>
+                </div>
+
+                <div id="comments">
+
+                </div>
+
+                <div class="font" align="" style="margin-top: 100px;">
+
+                    <h3><i class="fa fa-map-marker" style="color: #1995dc" aria-hidden="true"></i> Location</h3>
+                    <iframe id="event-map" width="100%" height="500">Error</iframe>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal" id="create-event-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="title">Organize event</h4>
+                    </div>
+                    <form method="post" class="form-horizontal" id="create-event">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name" class="col-sm-2">Name</label>
+                                <div class="col-md-8">
+                                    <input name="name" class="form-control" id="name" placeholder="Event name" required></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="date" class="col-sm-2">Date</label>
+                                <div class="col-md-8">
+                                    <input name="date" placeholder="Date" class="form-control required" data-date-format="DD MMM YYYY, HH:MM" id='date' required>
+                                    <!--<span class="input-group-addon">-->
+                                    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                                    <!--</span>-->
+                                    </input>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="location" class="col-sm-2">Location</label>
+                                <div class="col-md-8">
+                                    <input name="location" placeholder="Location" class="form-control" id='location'></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="quota" class="col-sm-2">Quotar</label>
+                                <div class="col-md-8">
+                                    <input name="quota" type="number" class="form-control" id="quota" min="1"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="category" class="col-sm-2">Category</label>
+                                <div class="col-md-8">
+                                    <input name="category" class="form-control" id="category"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-sm-2">Description</label>
+                                <div class="col-md-8">
+                                    <textarea name="description" type="text" class="form-control" id="description" placeholder="Description"></textarea></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script src="../bower_components/moment/min/moment.min.js"></script>
+<script src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+    $( document ).ready(function() {
+        var user;
+        var name = getQueryVariable("name");
+        var event_id = getQueryVariable("id");
+        var picture_url = getQueryVariable("picture-url");
+        var category = getQueryVariable("category");
+        var quota = getQueryVariable("quota");
+        var description = getQueryVariable("description");
+        var date = getQueryVariable("date");
+        var loc = getQueryVariable("location");
+        document.getElementById("event-map").src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyAyJZxZM9pJVFpcjrEGNPRFNhCTL3CgZXs%20&q=" + loc;
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+            return (false);
+        }
+
+        if (quota == false) {
+            quota = 100;
+        }
+        var event_quota = "Max " + quota;
+
+        document.getElementById("event-name").innerHTML = name.replace(/\+/g, " ");
+        document.getElementById("event-category").innerHTML = decodeURIComponent(category.replace(/\+/g, " "));
+        date = decodeURIComponent(date);
+        document.getElementById("event-date").innerHTML = date.replace(/\+/g, " ");
+
+        document.getElementById("event-description").innerHTML = decodeURIComponent(description.replace(/\+/g, " "));
+        document.getElementById("event-quota").innerHTML = event_quota;
+
+        $("#event-id").val(event_id);
+
+        if (picture_url != "null" && picture_url != "undefined_url") {
+            $('#picture-url').attr("src", picture_url);
+        }
+
+        jQuery.ajax({
+                    url: "http://test_backend.rapidapi.io/get_logged_in_user",
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: {
+                    }
+                })
+                .done(function(data, textStatus, jqXHR) {
+                    user = jQuery.parseJSON(data);
+                    console.log("HTTP Request Succeeded: " + jqXHR.status);
+                    console.log(data);
+                    $("#user-id").val(user._id);
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("HTTP Request Failed");
+                });
+
+
+        jQuery.ajax({
+                    url: "http://test_backend.rapidapi.io/has_user_joined",
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: {
+                        "event_id": event_id
+                    }
+                })
+                .done(function(data, textStatus, jqXHR) {
+                    console.log("HTTP Request Succeeded: " + jqXHR.status);
+                    console.log(data);
+                    $("#join-form").append('<button class="btn btn-sm btn-success pull-right" type="button">Joined</button>')
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 404) {
+                        $("#join-form").append('<button class="btn btn-sm btn-danger pull-right" type="submit">Join!</button>')
+                    }
+                    console.log("HTTP Request Failed");
+                })
+                .always(function() {
+                    /* ... */
+                });
+
+        $("#join-form").submit(function(event){
+            jQuery.ajax({
+                        url: "http://test_backend.rapidapi.io/join_event",
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        data: {
+                            "event_id": event_id,
+                            "user_id": $("#user-id").val()
+                        }
+                    })
+                    .done(function(data, textStatus, jqXHR) {
+                        console.log("HTTP Request Succeeded: " + jqXHR.status);
+                        console.log(data);
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log("HTTP Request Failed");
+                    })
+                    .always(function() {
+                        /* ... */
+                    });
+            event.preventDefault();
+            return false;
+        });
+
+        $( "#logout").click(function(event) {
+            jQuery.ajax({
+                        url: "http://test_backend.rapidapi.io/del_logged_in_user",
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        data: {
+                        }
+                    })
+                    .done(function(data, textStatus, jqXHR) {
+                        console.log("HTTP Request Succeeded: " + jqXHR.status);
+                        console.log(data);
+                        $(document).ready( function() {
+                            $( location ).attr("href", "index.html");
+                        });
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log("HTTP Request Failed");
+                    })
+                    .always(function() {
+                        /* ... */
+                    });
+            event.preventDefault();
+            return false;
+        });
+
+        $( "#create-event" ).submit(function(event) {
+            jQuery.ajax({
+                        url: "http://test_backend.rapidapi.io/set_event",
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        data: {
+                            "name": $("#name").val(),
+                            "category": $("#category").val(),
+                            "picture_url": $("#picture_url").val(),
+                            "date": $("#date").val(),
+                            "quota": $("#quota").val(),
+                            "created_by": user.name,
+                            "comments": $("#comments").val(),
+                            "description": $("#description").val(),
+                        }
+                    })
+                    .done(function(data, textStatus, jqXHR) {
+                        console.log("HTTP Request Succeeded: " + jqXHR.status);
+                        //JQuery code to redirect a page or URL
+                        $(document).ready( function() {
+                            $( location ).attr("href", "../pages/eventlist.html");
+                        });
+                        console.log(data);
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log("HTTP Request Failed");
+                    })
+                    .always(function() {
+                        /* ... */
+                    });
+            event.preventDefault();
+            return false;
+        });
+        console.log( "ready!" );
+    });
+
+    $(function () {
+        $('#date').datetimepicker({
+            pickTime: true
+        });
+    });
+
+</script>
+
+</body>
+</html>

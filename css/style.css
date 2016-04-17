@@ -1,0 +1,30 @@
+#signup, #event {
+    margin-top: 100px;
+}
+
+#eventlist {
+    margin-top: 100px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+#signin {
+    margin-top: 100px;
+}
+
+.eventlist-icon {
+    margin-right: 2px;
+}
+
+.eventlist-detail-row {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.event {
+    margin-bottom: 30px;
+}
+
+#event-map {
+    border: 0px;
+}
